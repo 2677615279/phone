@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.past.dao.OrdersDetailDAO">
+
+
+  <resultMap id="BaseResultMap" type="com.past.domain.entity.OrdersDetail">
+    <!--@mbg.generated-->
+    <!--@Table orders_detail-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="goods_id" jdbcType="BIGINT" property="goodsId" />
+    <result column="price" jdbcType="DOUBLE" property="price" />
+    <result column="num" jdbcType="BIGINT" property="num" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="operator_ip" jdbcType="VARCHAR" property="operatorIp" />
+  </resultMap>
+
+
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, order_id, goods_id, price, num, create_time, update_time, `operator`, operator_ip
+  </sql>
+
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from orders_detail
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from orders_detail
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+
+
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.past.domain.entity.OrdersDetail" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into orders_detail (order_id, goods_id, price, 
+      num, create_time, update_time, 
+      `operator`, operator_ip)
+    values (#{orderId,jdbcType=VARCHAR}, #{goodsId,jdbcType=BIGINT}, #{price,jdbcType=DOUBLE}, 
+      #{num,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{operator,jdbcType=VARCHAR}, #{operatorIp,jdbcType=VARCHAR})
+  </insert>
+
+
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.past.domain.entity.OrdersDetail" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into orders_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="num != null">
+        num,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="operator != null">
+        `operator`,
+      </if>
+      <if test="operatorIp != null">
+        operator_ip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="num != null">
+        #{num,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operator != null">
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorIp != null">
+        #{operatorIp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.past.domain.entity.OrdersDetail">
+    <!--@mbg.generated-->
+    update orders_detail
+    <set>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="num != null">
+        num = #{num,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operator != null">
+        `operator` = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorIp != null">
+        operator_ip = #{operatorIp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+  <update id="updateByPrimaryKey" parameterType="com.past.domain.entity.OrdersDetail">
+    <!--@mbg.generated-->
+    update orders_detail
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      goods_id = #{goodsId,jdbcType=BIGINT},
+      price = #{price,jdbcType=DOUBLE},
+      num = #{num,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      `operator` = #{operator,jdbcType=VARCHAR},
+      operator_ip = #{operatorIp,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update orders_detail
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="order_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.orderId,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="goods_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.goodsId,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="price = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.price,jdbcType=DOUBLE}
+        </foreach>
+      </trim>
+      <trim prefix="num = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.num,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="create_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="update_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="`operator` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.operator,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="operator_ip = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.operatorIp,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+
+
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update orders_detail
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="order_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.orderId != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.orderId,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="goods_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.goodsId != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.goodsId,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="price = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.price != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.price,jdbcType=DOUBLE}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="num = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.num != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.num,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="create_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.createTime != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="update_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.updateTime != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`operator` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.operator != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.operator,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="operator_ip = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.operatorIp != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.operatorIp,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+
+
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into orders_detail
+    (order_id, goods_id, price, num, create_time, update_time, `operator`, operator_ip
+      )
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.orderId,jdbcType=VARCHAR}, #{item.goodsId,jdbcType=BIGINT}, #{item.price,jdbcType=DOUBLE}, 
+        #{item.num,jdbcType=BIGINT}, #{item.createTime,jdbcType=TIMESTAMP}, #{item.updateTime,jdbcType=TIMESTAMP}, 
+        #{item.operator,jdbcType=VARCHAR}, #{item.operatorIp,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+
+
+  <select id="selectByOrderId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from orders_detail
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </select>
+
+
+</mapper>

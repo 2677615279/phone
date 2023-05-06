@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.past.dao.UsersDAO">
+
+
+  <resultMap id="BaseResultMap" type="com.past.domain.entity.Users">
+    <!--@mbg.generated-->
+    <!--@Table users-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="salt" jdbcType="VARCHAR" property="salt" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="birthday" jdbcType="DATE" property="birthday" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="img" jdbcType="VARCHAR" property="img" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="operator_ip" jdbcType="VARCHAR" property="operatorIp" />
+  </resultMap>
+
+
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, username, `password`, salt, phone, email, birthday, `status`, img, create_time, 
+    update_time, `operator`, operator_ip
+  </sql>
+
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from users
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from users
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+
+
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.past.domain.entity.Users" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into users (username, `password`, salt, 
+      phone, email, birthday, 
+      `status`, img, create_time, 
+      update_time, `operator`, operator_ip
+      )
+    values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, 
+      #{status,jdbcType=INTEGER}, #{img,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{operator,jdbcType=VARCHAR}, #{operatorIp,jdbcType=VARCHAR}
+      )
+  </insert>
+
+
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.past.domain.entity.Users" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into users
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="username != null">
+        username,
+      </if>
+      <if test="password != null">
+        `password`,
+      </if>
+      <if test="salt != null">
+        salt,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="img != null">
+        img,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="operator != null">
+        `operator`,
+      </if>
+      <if test="operatorIp != null">
+        operator_ip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null">
+        #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="img != null">
+        #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operator != null">
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorIp != null">
+        #{operatorIp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.past.domain.entity.Users">
+    <!--@mbg.generated-->
+    update users
+    <set>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        `password` = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null">
+        salt = #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="img != null">
+        img = #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operator != null">
+        `operator` = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorIp != null">
+        operator_ip = #{operatorIp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+  <update id="updateByPrimaryKey" parameterType="com.past.domain.entity.Users">
+    <!--@mbg.generated-->
+    update users
+    set username = #{username,jdbcType=VARCHAR},
+      `password` = #{password,jdbcType=VARCHAR},
+      salt = #{salt,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=DATE},
+      `status` = #{status,jdbcType=INTEGER},
+      img = #{img,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      `operator` = #{operator,jdbcType=VARCHAR},
+      operator_ip = #{operatorIp,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update users
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="username = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.username,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="`password` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.password,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="salt = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.salt,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="phone = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.phone,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="email = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.email,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="birthday = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.birthday,jdbcType=DATE}
+        </foreach>
+      </trim>
+      <trim prefix="`status` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.status,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="img = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.img,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="create_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="update_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="`operator` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.operator,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="operator_ip = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.operatorIp,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+
+
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update users
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="username = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.username != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.username,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`password` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.password != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.password,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="salt = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.salt != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.salt,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="phone = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.phone != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.phone,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="email = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.email != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.email,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="birthday = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.birthday != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.birthday,jdbcType=DATE}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`status` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.status != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.status,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="img = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.img != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.img,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="create_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.createTime != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="update_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.updateTime != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`operator` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.operator != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.operator,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="operator_ip = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.operatorIp != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.operatorIp,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+
+
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into users
+    (username, `password`, salt, phone, email, birthday, `status`, img, create_time, 
+      update_time, `operator`, operator_ip)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.username,jdbcType=VARCHAR}, #{item.password,jdbcType=VARCHAR}, #{item.salt,jdbcType=VARCHAR}, 
+        #{item.phone,jdbcType=VARCHAR}, #{item.email,jdbcType=VARCHAR}, #{item.birthday,jdbcType=DATE}, 
+        #{item.status,jdbcType=INTEGER}, #{item.img,jdbcType=VARCHAR}, #{item.createTime,jdbcType=TIMESTAMP}, 
+        #{item.updateTime,jdbcType=TIMESTAMP}, #{item.operator,jdbcType=VARCHAR}, #{item.operatorIp,jdbcType=VARCHAR}
+        )
+    </foreach>
+  </insert>
+
+
+  <select id="selectByPrincipal" parameterType="string" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from users
+    where BINARY username = #{principal,jdbcType=VARCHAR}
+    or BINARY phone = #{principal,jdbcType=VARCHAR}
+    or BINARY email = #{principal,jdbcType=VARCHAR}
+  </select>
+
+
+  <select id="selectByIds" parameterType="list" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from users
+    where id in
+    <foreach collection="ids" item="id" open="(" close=")" separator=",">
+      #{id,jdbcType=BIGINT}
+    </foreach>
+  </select>
+
+
+  <select id="countByUsername" parameterType="map" resultType="int">
+    select count(*)
+    from users
+    where username = #{username,jdbcType=VARCHAR}
+    <if test="id != null">
+      and id != #{id,jdbcType=BIGINT}
+    </if>
+  </select>
+
+
+  <select id="countByEmail" parameterType="map" resultType="int">
+    select count(*)
+    from users
+    where email = #{email,jdbcType=VARCHAR}
+    <if test="id != null">
+      and id != #{id,jdbcType=BIGINT}
+    </if>
+  </select>
+
+
+  <select id="countByPhone" parameterType="map" resultType="int">
+    select count(*)
+    from users
+    where phone = #{phone,jdbcType=VARCHAR}
+    <if test="id != null">
+      and id != #{id,jdbcType=BIGINT}
+    </if>
+  </select>
+
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from users
+  </select>
+
+
+  <select id="selectByPrincipalContaining" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from users where 1 = 1
+    <if test="pageRequest.query!= null">
+        <if test="pageRequest.query.username != null &amp;&amp; pageRequest.query.username != ''">
+            and username like concat('%',#{pageRequest.query.username,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="pageRequest.query.phone != null &amp;&amp; pageRequest.query.phone != ''">
+            and phone like concat('%',#{pageRequest.query.phone,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="pageRequest.query.email != null &amp;&amp; pageRequest.query.email != ''">
+            and email like concat('%',#{pageRequest.query.email,jdbcType=VARCHAR},'%')
+        </if>
+    </if>
+  </select>
+
+
+  <update id="changeStatus" parameterType="map">
+    update users
+    <set>
+      <if test="status != null">
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operator != null">
+        `operator` = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorIp != null">
+        operator_ip = #{operatorIp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+  <select id="selectByUsername" parameterType="string" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from users
+    where username = #{username,jdbcType=VARCHAR}
+  </select>
+
+
+</mapper>

@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.past.dao.GuessDAO">
+
+
+  <resultMap id="BaseResultMap" type="com.past.domain.entity.Guess">
+    <!--@mbg.generated-->
+    <!--@Table guess-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="goods_id" jdbcType="BIGINT" property="goodsId" />
+    <result column="num" jdbcType="INTEGER" property="num" />
+    <result column="favorite" jdbcType="INTEGER" property="favorite" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="operator_ip" jdbcType="VARCHAR" property="operatorIp" />
+  </resultMap>
+
+
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, goods_id, num, favorite, user_id, create_time, update_time, `operator`, operator_ip
+  </sql>
+
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from guess
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from guess
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+
+
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.past.domain.entity.Guess" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into guess (goods_id, num, favorite, 
+      user_id, create_time, update_time, 
+      `operator`, operator_ip)
+    values (#{goodsId,jdbcType=BIGINT}, #{num,jdbcType=INTEGER}, #{favorite,jdbcType=INTEGER}, 
+      #{userId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{operator,jdbcType=VARCHAR}, #{operatorIp,jdbcType=VARCHAR})
+  </insert>
+
+
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.past.domain.entity.Guess" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into guess
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="num != null">
+        num,
+      </if>
+      <if test="favorite != null">
+        favorite,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="operator != null">
+        `operator`,
+      </if>
+      <if test="operatorIp != null">
+        operator_ip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="num != null">
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="favorite != null">
+        #{favorite,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operator != null">
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorIp != null">
+        #{operatorIp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.past.domain.entity.Guess">
+    <!--@mbg.generated-->
+    update guess
+    <set>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="num != null">
+        num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="favorite != null">
+        favorite = #{favorite,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operator != null">
+        `operator` = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorIp != null">
+        operator_ip = #{operatorIp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+  <update id="updateByPrimaryKey" parameterType="com.past.domain.entity.Guess">
+    <!--@mbg.generated-->
+    update guess
+    set goods_id = #{goodsId,jdbcType=BIGINT},
+      num = #{num,jdbcType=INTEGER},
+      favorite = #{favorite,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      `operator` = #{operator,jdbcType=VARCHAR},
+      operator_ip = #{operatorIp,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update guess
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="goods_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.goodsId,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="num = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.num,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="favorite = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.favorite,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="user_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.userId,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="create_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="update_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="`operator` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.operator,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="operator_ip = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.operatorIp,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+
+
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update guess
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="goods_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.goodsId != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.goodsId,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="num = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.num != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.num,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="favorite = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.favorite != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.favorite,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="user_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.userId != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.userId,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="create_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.createTime != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="update_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.updateTime != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`operator` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.operator != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.operator,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="operator_ip = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.operatorIp != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.operatorIp,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+
+
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into guess
+    (goods_id, num, favorite, user_id, create_time, update_time, `operator`, operator_ip
+      )
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.goodsId,jdbcType=BIGINT}, #{item.num,jdbcType=INTEGER}, #{item.favorite,jdbcType=INTEGER}, 
+        #{item.userId,jdbcType=BIGINT}, #{item.createTime,jdbcType=TIMESTAMP}, #{item.updateTime,jdbcType=TIMESTAMP}, 
+        #{item.operator,jdbcType=VARCHAR}, #{item.operatorIp,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from guess
+  </select>
+
+
+  <select id="selectByUserId" parameterType="long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from guess
+    where user_id = #{userId,jdbcType=BIGINT}
+  </select>
+
+
+  <select id="selectFavoriteByUserId" parameterType="long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from guess
+    where favorite &gt; 0 and user_id = #{userId,jdbcType=BIGINT}
+  </select>
+
+
+  <select id="selectMostLikeByUserId" parameterType="long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from guess
+    where user_id = #{userId,jdbcType=BIGINT}
+    order by num desc
+  </select>
+
+
+  <select id="selectByUserIdWithGoodsId" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from guess
+    where user_id = #{userId,jdbcType=BIGINT} and goods_id = #{goodsId,jdbcType=BIGINT}
+  </select>
+
+
+  <select id="selectRecentViewGoodsByUserId" parameterType="long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from guess
+    where user_id = #{userId,jdbcType=BIGINT} and favorite = -1
+    order by num desc
+  </select>
+
+
+  <select id="selectMostHotGoods" resultType="map">
+    select
+    sum(num) as num, goods_id as g
+    from guess
+    group by goods_id
+    order by num desc
+  </select>
+
+
+</mapper>

@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.past.dao.OrdersDAO">
+
+
+  <resultMap id="BaseResultMap" type="com.past.domain.entity.Orders">
+    <!--@mbg.generated-->
+    <!--@Table orders-->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="day" jdbcType="DATE" property="day" />
+    <result column="price" jdbcType="DOUBLE" property="price" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="express_no" jdbcType="VARCHAR" property="expressNo" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="operator_ip" jdbcType="VARCHAR" property="operatorIp" />
+  </resultMap>
+
+
+  <resultMap type="com.past.domain.vo.OrderWelcomeVO" id="Base">
+	<result property="totalMoney" column="totalMoney" javaType="java.lang.Long" />
+	<result property="orderMonth" column="orderMonth" javaType="java.lang.String" />
+	<result property="sheets" column="sheets" javaType="java.lang.Long" />
+  </resultMap>
+
+
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, user_id, `day`, price, username, phone, address, express_no, `status`, create_time, 
+    update_time, `operator`, operator_ip
+  </sql>
+
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from orders
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from orders
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+
+
+  <insert id="insert" parameterType="com.past.domain.entity.Orders">
+    <!--@mbg.generated-->
+    insert into orders (id, user_id, `day`, 
+      price, username, phone, 
+      address, express_no, `status`, 
+      create_time, update_time, `operator`, 
+      operator_ip)
+    values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, #{day,jdbcType=DATE}, 
+      #{price,jdbcType=DOUBLE}, #{username,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{expressNo,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{operator,jdbcType=VARCHAR}, 
+      #{operatorIp,jdbcType=VARCHAR})
+  </insert>
+
+
+  <insert id="insertSelective" parameterType="com.past.domain.entity.Orders">
+    <!--@mbg.generated-->
+    insert into orders
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="day != null">
+        `day`,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="expressNo != null">
+        express_no,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="operator != null">
+        `operator`,
+      </if>
+      <if test="operatorIp != null">
+        operator_ip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="day != null">
+        #{day,jdbcType=DATE},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="expressNo != null">
+        #{expressNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operator != null">
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorIp != null">
+        #{operatorIp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.past.domain.entity.Orders">
+    <!--@mbg.generated-->
+    update orders
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="day != null">
+        `day` = #{day,jdbcType=DATE},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="expressNo != null">
+        express_no = #{expressNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operator != null">
+        `operator` = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorIp != null">
+        operator_ip = #{operatorIp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+
+  <update id="updateByPrimaryKey" parameterType="com.past.domain.entity.Orders">
+    <!--@mbg.generated-->
+    update orders
+    set user_id = #{userId,jdbcType=BIGINT},
+      `day` = #{day,jdbcType=DATE},
+      price = #{price,jdbcType=DOUBLE},
+      username = #{username,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      express_no = #{expressNo,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      `operator` = #{operator,jdbcType=VARCHAR},
+      operator_ip = #{operatorIp,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update orders
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="user_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=VARCHAR} then #{item.userId,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="`day` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=VARCHAR} then #{item.day,jdbcType=DATE}
+        </foreach>
+      </trim>
+      <trim prefix="price = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=VARCHAR} then #{item.price,jdbcType=DOUBLE}
+        </foreach>
+      </trim>
+      <trim prefix="username = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=VARCHAR} then #{item.username,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="phone = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=VARCHAR} then #{item.phone,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="address = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=VARCHAR} then #{item.address,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="express_no = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=VARCHAR} then #{item.expressNo,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="`status` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=VARCHAR} then #{item.status,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="create_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=VARCHAR} then #{item.createTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="update_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=VARCHAR} then #{item.updateTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="`operator` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=VARCHAR} then #{item.operator,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="operator_ip = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=VARCHAR} then #{item.operatorIp,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=VARCHAR}
+    </foreach>
+  </update>
+
+
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update orders
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="user_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.userId != null">
+            when id = #{item.id,jdbcType=VARCHAR} then #{item.userId,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`day` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.day != null">
+            when id = #{item.id,jdbcType=VARCHAR} then #{item.day,jdbcType=DATE}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="price = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.price != null">
+            when id = #{item.id,jdbcType=VARCHAR} then #{item.price,jdbcType=DOUBLE}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="username = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.username != null">
+            when id = #{item.id,jdbcType=VARCHAR} then #{item.username,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="phone = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.phone != null">
+            when id = #{item.id,jdbcType=VARCHAR} then #{item.phone,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="address = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.address != null">
+            when id = #{item.id,jdbcType=VARCHAR} then #{item.address,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="express_no = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.expressNo != null">
+            when id = #{item.id,jdbcType=VARCHAR} then #{item.expressNo,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`status` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.status != null">
+            when id = #{item.id,jdbcType=VARCHAR} then #{item.status,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="create_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.createTime != null">
+            when id = #{item.id,jdbcType=VARCHAR} then #{item.createTime,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="update_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.updateTime != null">
+            when id = #{item.id,jdbcType=VARCHAR} then #{item.updateTime,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`operator` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.operator != null">
+            when id = #{item.id,jdbcType=VARCHAR} then #{item.operator,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="operator_ip = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.operatorIp != null">
+            when id = #{item.id,jdbcType=VARCHAR} then #{item.operatorIp,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=VARCHAR}
+    </foreach>
+  </update>
+
+
+  <insert id="batchInsert" parameterType="map">
+    <!--@mbg.generated-->
+    insert into orders
+    (id, user_id, `day`, price, username, phone, address, express_no, `status`, create_time, 
+      update_time, `operator`, operator_ip)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.id,jdbcType=VARCHAR}, #{item.userId,jdbcType=BIGINT}, #{item.day,jdbcType=DATE}, 
+        #{item.price,jdbcType=DOUBLE}, #{item.username,jdbcType=VARCHAR}, #{item.phone,jdbcType=VARCHAR}, 
+        #{item.address,jdbcType=VARCHAR}, #{item.expressNo,jdbcType=VARCHAR}, #{item.status,jdbcType=INTEGER}, 
+        #{item.createTime,jdbcType=TIMESTAMP}, #{item.updateTime,jdbcType=TIMESTAMP}, #{item.operator,jdbcType=VARCHAR}, 
+        #{item.operatorIp,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+
+
+  <select id="selectByOrderSearchVO" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from orders where 1 = 1
+    <if test="pageRequest.query != null">
+        <if test="pageRequest.query.orderIdKeyword != null and pageRequest.query.orderIdKeyword != ''">
+            and id like concat('%',#{pageRequest.query.orderIdKeyword,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="pageRequest.query.startDate != null and pageRequest.query.startDate != ''">
+            and `day` &gt;= #{pageRequest.query.startDate,jdbcType=VARCHAR}
+        </if>
+        <if test="pageRequest.query.endDate != null and pageRequest.query.endDate != ''">
+            and `day` &lt;= #{pageRequest.query.endDate,jdbcType=VARCHAR}
+        </if>
+        <if test="pageRequest.query.orderStatus !=null and pageRequest.query.orderStatus != ''">
+			and `status` = #{pageRequest.query.orderStatus,jdbcType=INTEGER}
+	    </if>
+    </if>
+  </select>
+
+
+  <select id="selectByUserId" parameterType="long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from orders
+    where user_id = #{userId,jdbcType=BIGINT}
+  </select>
+
+
+  <select id="selectByUserIdWithStatus" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from orders
+    where `status` = #{status,jdbcType=INTEGER}
+    and user_id = #{userId,jdbcType=BIGINT}
+  </select>
+
+
+  <select id="selectTotalMoneyByMonth" resultMap="Base">
+    select
+    sum(price) as totalMoney, date_format(`day`, '%Y-%m') as orderMonth, count(id) as sheets
+    from orders
+    group by orderMonth
+    order by orderMonth asc
+  </select>
+
+
+  <select id="selectTotal" resultType="int">
+    select
+    count(id) as total
+    from orders
+  </select>
+
+
+  <select id="selectTotalDeliver" resultType="int">
+    select
+    count(id) as total
+    from orders
+    where `status` = 2
+  </select>
+
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from orders
+  </select>
+
+
+</mapper>
